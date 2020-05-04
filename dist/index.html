@@ -11,15 +11,41 @@
         <title>To Do</title>
     </head>
     <body>
+       
         <div class="wrapper">
+            <div class="sidebar">
+                <a class="active" href="#">Today Tasks</a>
+                <a href="#">Tomorrow Tasks</a>
+                <button type="button" id="fold-sidebar">&#10094;</button>
+                <form class="new-project-form" action="#">
+                    <input class="new-project" type="text" placeholder="New Project">
+                    <button class="new-project-submit" type="submit">&#43;</button>
+                </form>
+              </div>
+              <section class="content">
+            <div class="project">
+                <button type="button" class="toggle-sidebar">&#9776; 	</button>
+                <h2 class="Project-Title">Today Tasks</h2>
+            </div>
             <div class="to-do-list">
                 <div class="to-do-item first">
-                    <i class="fas fa-trash-alt delete-button"></i>
-                    <p class="title">Do Something Productive</p>
-                    <i class="far fa-clock"></i>
-                    <div class="date">
-                        <p class="due-date">25.05.2020</p>
-                        <i class="fas fa-exclamation-circle"></i>
+                    <div class="wrap">
+                        <div class="first-row">
+                            <i class="fas fa-trash-alt delete-button"></i>
+                            <p class="title">Do Something Productive About Your Life </p>
+                        </div>
+                        <div class="description">
+                            <span>&#9881;</span>
+                            <p>Description goes here</p>
+                        </div>
+                        <div class="fold-item">
+                       <button>&#9650;</button>
+                        </div>
+                        <div class="second-row">
+                            <i class="far fa-clock"></i>
+                            <p class="due-date">25.05.2020</p>
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
                     </div>
                     <label class="container">
                         <input type="checkbox" checked="checked">
@@ -27,13 +53,38 @@
                       </label>
                     
                 </div>
-                <div class="to-do-item">
-
+                <div class="to-do-item ">
+                    <div class="wrap">
+                        <div class="first-row">
+                            <i class="fas fa-trash-alt delete-button"></i>
+                            <p class="title">Do Something Productive About Your Life </p>
+                        </div>
+                        <div class="description">
+                            <span>&#9881;</span>
+                            <p>Description goes here</p>
+                        </div>
+                        <div class="fold-item">
+                       <button>&#9650;</button>
+                        </div>
+                        <div class="second-row">
+                            <i class="far fa-clock"></i>
+                            <p class="due-date">25.05.2020</p>
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+        
+                    </div>
+                    <label class="container">
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                      </label>
+                    
                 </div>
+                
             </div>
             <div class="add">
-                <i class="fas fa-plus-circle fa-3x"></i>
+                <i class="fas fa-plus-circle fa-2x"></i>
             </div>
+        </section>
         </div>
 
 

@@ -1,2 +1,3 @@
-const containerInput = document.querySelector(".container input");
-const title= document.querySelector(".title");
+import   './sidebar';
+import './expand-fold-todo';
+const tasks = [];
