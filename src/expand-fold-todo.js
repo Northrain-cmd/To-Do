@@ -1,4 +1,4 @@
-export default (function expandToDo(){
+export default function expandToDo(){
     const descriptions = document.querySelectorAll(".description");
     const toDoItems= document.querySelectorAll(".to-do-item");
     const foldItems = document.querySelectorAll(".fold-item");
@@ -16,4 +16,5 @@ export default (function expandToDo(){
             descriptions[index].style.display="none";
         })
     })
-})()
+    
+};
