@@ -192,7 +192,6 @@ input[type="button"]{
 }
 .fa-exclamation-circle{
     font-size: 0.8rem;
-    color:orange;
 }
 .container{
     position: absolute;
@@ -331,7 +330,7 @@ input[type="button"]{
         align-content: flex-start;
         flex-wrap: wrap;
     }
-    .first{
+    .to-do-list:first-child{
         margin:0;
     }
     .to-do-item{
