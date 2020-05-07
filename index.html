@@ -13,18 +13,20 @@
        
         <div class="wrapper">
             <div class="sidebar">
+                <form class="new-project-form" action="#">
+                    <input class="new-project" maxlength="50"  type="text" placeholder="New Project">
+                    <button class="new-project-submit" type="submit">&#43;</button>
+                </form>
                 <a class="active" href="#">Today Tasks</a>
                 <a href="#">Tomorrow Tasks</a>
                 <button type="button" id="fold-sidebar">&#10094;</button>
-                <form class="new-project-form" action="#">
-                    <input class="new-project" type="text" placeholder="New Project">
-                    <button class="new-project-submit" type="submit">&#43;</button>
-                </form>
               </div>
               <section class="content">
             <div class="project">
                 <button type="button" class="toggle-sidebar">&#9776; 	</button>
-                <h2 class="Project-Title">Today Tasks</h2>
+                <span class="Project-Title">
+                    <h2 class="Project-Title-text">Today Tasks</h2>
+                </span>
             </div>
             <div class="to-do-list">
                 <!----
