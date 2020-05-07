@@ -80,6 +80,23 @@ input[type="button"]{
     display: flex;
     justify-content: center;
 }
+.deleteProjectDiv{
+    display: flex;
+    flex-direction: row;
+}
+.deleteProjectDiv a{
+    flex:9;
+}
+.deleteProject{
+    flex: 1;
+    background-color: initial;
+    border-radius: 20%;
+    font-size: 0.9em;
+    border: none;
+    font-weight: 900;
+    color:black;
+}
+
 
 
 .to-do-list{
@@ -298,13 +315,13 @@ input[type="button"]{
   .sidebar {
     margin: 0;
     padding: 0;
-    width: 50%;
+    width: 60%;
     z-index: 1000;
     flex-direction: column;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
-    overflow: auto;
+    overflow: auto ;
     display: none;
   }
   
@@ -313,8 +330,11 @@ input[type="button"]{
     word-wrap: break-word;
     display: block;
     color: #05a;
-    padding: 16px;
+    min-height: 100%;
     text-decoration: none;
+  }
+  .sidebar div{
+    padding:7px;
   }
   
   /* Active/current link */
@@ -378,7 +398,7 @@ input[type="button"]{
             background-color: #f1f1f1;
             position: fixed;
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
             display: none;
           display: flex;
           flex-direction: column;

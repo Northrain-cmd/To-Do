@@ -7,7 +7,6 @@ import View from  './toDoList-View';
 import handleCheckBoxes from './checkbox-handler';
 import newProject from './ProjectView';
 switchTabs.switchTabs();
-newProject.addProjectHandler();
 projectsModel.newProject("Today Tasks");
 projectsModel.newTask("Do something productive about your life","25.05.2020",
                       "Description Is Right Here","regular","Today Tasks");
@@ -19,5 +18,6 @@ projectsModel.newTask("Do something productive about your life","25.05.2020",
 const sidebarLinks = document.querySelectorAll(".sidebar a");
 let activeProject = sidebarLinks[0].textContent;
 View.renderList(activeProject);
+newProject.addProjectHandler();
 ExpandItem();
 handleCheckBoxes.checkBoxes();
