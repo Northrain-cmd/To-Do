@@ -1,4 +1,4 @@
-import projectsModel from './projectsModel';
+import projectsModel from './ProjectsModel';
 export default (function(){
     const checkBoxes = function(){
         const checkmarks = document.querySelectorAll(".checkbox");

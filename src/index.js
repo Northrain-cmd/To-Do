@@ -1,11 +1,13 @@
 import   './sidebar';
 import switchTabs from './switch-projects';
 import ExpandItem from './expand-fold-todo';
-import './projectsModel'
-import projectsModel from './projectsModel';
+import './ProjectsModel'
+import projectsModel from './ProjectsModel';
 import View from  './toDoList-View';
 import handleCheckBoxes from './checkbox-handler';
+import newProject from './ProjectView';
 switchTabs.switchTabs();
+newProject.addProjectHandler();
 projectsModel.newProject("Today Tasks");
 projectsModel.newTask("Do something productive about your life","25.05.2020",
                       "Description Is Right Here","regular","Today Tasks");

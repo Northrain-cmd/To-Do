@@ -15,8 +15,7 @@ export default (function projectsModel(){
         projects[projectName].todoList.push(tasksFactory(title,dueDate,description,importance,checked));
     }
     const checkBox = function (index){
-        console.log(projects[switchTabs.getActiveProject()]);
-        //projects[switchTabs.getActiveProject()].todoList[index].checked = !projects[switchTabs.getActiveProject()].todoList[index].checked;
+        projects[switchTabs.getActiveProject()].todoList[index].checked = !projects[switchTabs.getActiveProject()].todoList[index].checked;
     }
     return {newProject,projects,newTask,checkBox}
 })()

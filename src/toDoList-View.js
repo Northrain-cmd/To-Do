@@ -1,4 +1,4 @@
-import projectsModel from "./projectsModel"
+import projectsModel from "./ProjectsModel"
 export default (function toDoListView(){
     const renderList = function (projectName){
         projectsModel.projects[projectName].todoList.forEach(toDo =>{
