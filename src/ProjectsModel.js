@@ -11,11 +11,15 @@ export default (function projectsModel(){
     const newProject = function (projectName){
         projects[projectName] = projectsFactory(projectName);
     }
+    const deleteProject = function (projectName){
+        delete projects[projectName];
+        console.table(projects);
+    }
     const newTask = function (title,dueDate,description,importance,projectName,checked=false){
         projects[projectName].todoList.push(tasksFactory(title,dueDate,description,importance,checked));
     }
     const checkBox = function (index){
         projects[switchTabs.getActiveProject()].todoList[index].checked = !projects[switchTabs.getActiveProject()].todoList[index].checked;
     }
-    return {newProject,projects,newTask,checkBox}
+    return {newProject,projects,newTask,deleteProject,checkBox}
 })()

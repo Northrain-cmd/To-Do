@@ -1,8 +1,8 @@
-@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 html{
     min-height: 100vh;
     font-size: 24px;
-    background: url(./background-mobile.png)  no-repeat ;
+    background: url(../Images/background-mobile.png)  no-repeat ;
     background-position: 20% 1%;
     background-size: cover;
 }
@@ -378,7 +378,7 @@ input[type="button"]{
         left:45%;
     }
     html{
-        background-image: url(./background-desktop.png);
+        background-image: url(../Images/background-desktop.png);
     }
   }
   @media only screen and (min-width:1000px){

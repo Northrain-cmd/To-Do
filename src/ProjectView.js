@@ -1,5 +1,6 @@
 import switchProjects from "./switch-projects";
-import projectsModel from "./ProjectsModel";
+import ProjectsModel from "./ProjectsModel";
+import clearList from "./clear-list";
 
 export default (function(){
     const addProjectBtn = document.querySelector(".new-project-submit");
@@ -18,10 +19,10 @@ export default (function(){
             newProjectText.href = "#";
             newProject.append(newProjectButton,newProjectText);
             if(!inputForm.value) alert("Please choose a name for this project");
-            else if(!(inputForm.value in projectsModel.projects)){
+            else if(!(inputForm.value in ProjectsModel.projects)){
                 newProjectText.textContent = inputForm.value;
                 sidebar.insertBefore(newProject,foldButton);
-                projectsModel.newProject(inputForm.value);
+                ProjectsModel.newProject(inputForm.value);
             }
             else alert("Project with this name already exists");
             switchProjects.switchTabs();
@@ -33,7 +34,13 @@ export default (function(){
     function handleProjectsDeleteButtons(){
        sidebar.addEventListener('click',(e)=>{
            if (e.target.classList.contains('deleteProject')){
+                let project = e.target.nextElementSibling.textContent;
                sidebar.removeChild(e.target.parentNode);
+               ProjectsModel.deleteProject(project);
+               if(switchProjects.getActiveProject()=== project){
+                   clearList(project);
+               }
+               else return
            }
            else return
        })
