@@ -23,7 +23,18 @@ html{
     font-family: Arial;
     
 }
+.pencil{
+    margin:0;
+    display:block;
+    transform: rotate(120deg);
+    font-size: .7em;
+    margin-bottom: 0.5%;
+    color: #80b8f0;
+}
 .Project-Title-text{
+    border: 1px solid white;
+    color:white;
+    background-color: #80b8f0;;
     margin: 0;
     font-size: 1em;
 }
@@ -61,7 +72,7 @@ input[type="button"]{
     border: none;
  }
   
-  
+
 .Project-Title{
     flex: 5;
     overflow-wrap: break-word;
@@ -79,6 +90,7 @@ input[type="button"]{
     -webkit-appearance: none;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 .deleteProjectDiv{
     display: flex;
@@ -315,7 +327,7 @@ input[type="button"]{
   .sidebar {
     margin: 0;
     padding: 0;
-    width: 60%;
+    max-width: 70%;
     z-index: 1000;
     flex-direction: column;
     background-color: #f1f1f1;
