@@ -47,13 +47,13 @@ export default (function toDoListView(){
                             let importance = document.createElement("i");
                             importance.classList.add("fas","fa-exclamation-circle");
                                 switch (toDo.importance){
-                                    case "regular":
+                                    case "Regular":
                                         importance.style.color="green";
                                         break
-                                    case "moderate":
+                                    case "Moderate":
                                         importance.style.color="orange";
                                         break
-                                    case "high":
+                                    case "High":
                                         importance.style.color="red";
                                         break
                                 }
@@ -73,6 +73,21 @@ export default (function toDoListView(){
                 toDoItem.appendChild(label);
             todoList.appendChild(toDoItem);
         })
+        //addNewItemHandler();
     }
+    const addNewItemHandler = function(){
+        const newForm = document.querySelector('.addNewItem');
+        const addButton = document.querySelector(".addButton");
+        addButton.addEventListener('click',()=>{
+            console.log("I here you");
+            if(newForm.style.display==="block"){
+                newForm.style.display="none";
+            }
+            else{
+                newForm.style.display="block";
+            }
+        })
+    }
+    addNewItemHandler();
     return {renderList};
 })()

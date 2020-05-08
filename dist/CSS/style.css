@@ -13,6 +13,9 @@ html{
     margin-left: initial;
     position: relative;
 }
+.switch-toggle.switch-candy, .switch-light.switch-candy > span{
+    background-color: initial !important;
+}
 .project{
     min-height:10vh;
     background-color: lightcoral;
@@ -50,6 +53,48 @@ html{
         
    
 }
+.addNewItem{
+    -webkit-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    margin:0 auto;
+    padding: 5%;
+    margin-bottom: 5%;
+    display: none;
+    overflow: hidden;
+    background-color:#80b8f0 ;
+    z-index: 1;
+    position: fixed;
+    top: 10%;
+    left:5%;
+    
+}
+.addNewItem > *{
+    padding: 1% 0;
+    margin-left: 10%;
+    color:white;
+}
+.addNewItem label{
+    display: flex;
+    flex-direction: column;
+}
+.addNewItem input,button{
+    width:80%;
+}
+.addNewItem button{
+    margin-top: 2%;
+    background-color: green;
+    border: none;
+    color: white;
+}
+.addNewItem select{
+    width: 80%;
+    background-color: #2196F3;
+}
+
 
 #fold-sidebar{
     width: 15%;
@@ -184,16 +229,17 @@ input[type="button"]{
 }
 .add{
     min-height: 10vh;
-    z-index: 999;
+    z-index: 9;
     width:10%;
     position: fixed;
-    left:35%;
+    left:40%;
     bottom: 0;
     background-color: inherit;
     text-align: center;
     
 }
 .add i{
+    z-index: 9;
     font-size: 3em;
     margin: 0;
     margin-right: 5%;
@@ -383,6 +429,16 @@ input[type="button"]{
         width: 45%;
         min-height: 15vh;
     }
+    .addNewItem{
+        padding:1%;
+        margin-left: 4%;
+    }
+    .addNewItem > *{
+        padding:1%;
+    }
+    .addNewItem input{
+        width:86%;
+    }
     .wrap{
         min-height: 15vh;
     }
@@ -396,6 +452,12 @@ input[type="button"]{
   @media only screen and (min-width:1000px){
       html{
           font-size: 32px;
+      }
+      .addNewItem{
+          width:30%;
+          left:41%;
+          top:12%;
+          padding: 1%;
       }
       .content{
           margin-left: 25%;
@@ -428,6 +490,7 @@ input[type="button"]{
 
   }
   .add i{
+      margin-right: 10%;
       font-size: 2.5em;
   }
   
