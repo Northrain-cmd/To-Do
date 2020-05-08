@@ -5,7 +5,7 @@ import handleCheckBoxes from './checkbox-handler';
 export default (function (){
     let activeProject;
     let sidebarLinks = document.querySelectorAll(".sidebar a");
-    const projectTitle = document.querySelector(".Project-Title");
+    const projectTitle = document.querySelector(".Project-Title-text");
     const setActiveProject = function (value){
         activeProject = value;
     }

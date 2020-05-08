@@ -1,6 +1,9 @@
 import projectsModel from "./ProjectsModel"
 export default (function toDoListView(){
+    const projectTitle = document.querySelector(".Project-Title-text");
     const renderList = function (projectName){
+        projectTitle.innerHTML=projectName;
+        projectTitle.style.border="1px solid white";
         projectsModel.projects[projectName].todoList.forEach(toDo =>{
             let todoList = document.querySelector(".to-do-list");
                 let toDoItem = document.createElement("div");
