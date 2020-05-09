@@ -21,11 +21,3 @@ View.renderList(activeProject);
 newProject.addProjectHandler();
 ExpandItem();
 handleCheckBoxes.checkBoxes();
-const toggle = document.querySelectorAll(".switch-toggle input");
-let importance = "Regular";
-toggle.forEach(toggle=>{
-    toggle.addEventListener("focus",(e)=>{
-       importance = e.target.value;
-       console.log(importance);
-    })
-})

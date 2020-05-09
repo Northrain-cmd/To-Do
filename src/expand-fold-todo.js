@@ -1,20 +1,14 @@
 export default function expandToDo(){
-    const descriptions = document.querySelectorAll(".description");
-    const toDoItems= document.querySelectorAll(".to-do-item");
-    const foldItems = document.querySelectorAll(".fold-item");
-    toDoItems.forEach((item,index)=>{
-        item.addEventListener('click',(e)=>{
+    const toDoList= document.querySelector(".to-do-list");
+        toDoList.addEventListener('click',(e)=>{
             if(e.target.classList.contains("title")){
-                descriptions[index].style.display="flex";
-                foldItems[index].style.display="flex";
+                e.target.parentNode.nextElementSibling.style.display="flex";
+                e.target.parentNode.nextElementSibling.nextElementSibling.style.display="flex";
             }
-            })
-    })
-    foldItems.forEach((item,index)=>{
-        item.addEventListener('click',()=>{
-            item.style.display="none";
-            descriptions[index].style.display="none";
-        })
-    })
-    
-};
+            else if(e.target.parentNode.classList.contains("fold-item")){
+                e.target.parentNode.style.display="none";
+                e.target.parentNode.previousElementSibling.style.display="none";
+            }
+            else return
+        }) 
+        }

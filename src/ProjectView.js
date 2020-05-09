@@ -59,6 +59,7 @@ export default (function(){
             if(projectTitle.textContent!== activeTab.textContent){
                 ProjectsModel.renameObject(activeTab.textContent,projectTitle.textContent);
                 activeTab.textContent = projectTitle.textContent;
+                switchProjects.setActiveProject(activeTab.textContent);
             }
             else return ;
         })

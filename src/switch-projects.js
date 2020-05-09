@@ -38,5 +38,5 @@ export default (function (){
         
         })
     }
-    return {switchTabs,getActiveProject}  
+    return {switchTabs,getActiveProject,setActiveProject}  
 })()
