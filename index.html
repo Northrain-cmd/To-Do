@@ -14,7 +14,7 @@
        
         <div class="wrapper">
             <div class="sidebar">
-                <form class="new-project-form" action="#">
+                <form class="new-project-form" action="#" onsubmit="return false">
                     <input class="new-project" maxlength="50"  type="text" placeholder="New Project">
                     <button class="new-project-submit" type="submit">&#43;</button>
                 </form>
@@ -92,10 +92,10 @@
             </div>
             <form action="#" class="addNewItem">
                 <label >Title
-                    <input type="text" id="title">
+                    <input type="text" name="title" required id="title">
                 </label>
                 <label>Due Date
-                     <input type="date" id="date">
+                     <input type="date" name="date" required id="date">
                 </label>
                 <label for="importance">Importance</label>
                 <div class="switch-toggle switch-3 switch-candy">
@@ -108,7 +108,7 @@
                     <a></a>
                   </div>
                     <label >Description
-                        <input type="text">
+                        <input type="text" name="description">
                     </label>
                     <button type="submit">Add</button>
                     
