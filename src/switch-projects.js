@@ -1,7 +1,5 @@
-import View from './toDoList-View'
-import clearList from './clear-list';
-import expandToDo from './expand-fold-todo';
-import handleCheckBoxes from './checkbox-handler';
+import View from './toDoView'
+import clearList from './toDoView';
 export default (function (){
     let activeProject;
     let sidebarLinks = document.querySelectorAll(".sidebar a");
@@ -27,11 +25,8 @@ export default (function (){
                     link.classList.add("active");
                     setActiveProject(link.textContent);
                     projectTitle.textContent = link.textContent;
-                    clearList(activeProject);
+                    clearList.clearList();
                     View.renderList(activeProject);
-                    expandToDo();
-                    handleCheckBoxes.checkBoxes();
-        
                 }
 
             })

@@ -72,6 +72,28 @@ box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
     left:5%;
     
 }
+.taskAdded{
+    position: absolute;
+    right:5%;
+    top:1%;
+    background-color: green;
+    font-style: normal;
+    font-size: 0.7em;
+    opacity: 0;
+    display: inline-block;
+}
+@keyframes fadeIn{
+    0%{
+
+    }
+    50%{
+        opacity:1;
+        transform: scale(1.3);
+    }
+    100%{
+        opacity: 0;
+    }
+}
 .addNewItem > *{
     padding: 1% 0;
     margin-left: 10%;
@@ -418,7 +440,7 @@ input[type="button"]{
     .to-do-list{
         flex-direction: row;
         justify-content: space-between;
-        align-content: flex-start;
+        align-items: flex-start;
         flex-wrap: wrap;
     }
     .to-do-list:first-child{

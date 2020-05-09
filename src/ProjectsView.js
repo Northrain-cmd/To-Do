@@ -1,6 +1,6 @@
 import switchProjects from "./switch-projects";
 import ProjectsModel from "./ProjectsModel";
-import clearList from "./clear-list";
+import clearList from "./toDoView";
 
 export default (function(){
     const addProjectBtn = document.querySelector(".new-project-submit");
@@ -40,11 +40,7 @@ export default (function(){
                sidebar.removeChild(e.target.parentNode);
                ProjectsModel.deleteProject(project);
                if(switchProjects.getActiveProject()=== project){
-               
-                   clearList(project);
-                   console.log("Hello");
-                 
-                   
+                   clearList.clearList();
                }
                else return
            }

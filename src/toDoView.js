@@ -79,7 +79,6 @@ export default (function toDoListView(){
             
             appendItem(toDo);
         })
-        //addNewItemHandler();
     }
     const addNewItemHandler = function(){
         const newForm = document.querySelector('.addNewItem');
@@ -108,10 +107,25 @@ export default (function toDoListView(){
             const todolist = projectsModel.projects[switchProjects.getActiveProject()].todoList;
             const todo = todolist[todolist.length-1];
             appendItem(todo);
-            console.log(projectsModel.projects);
+            animate();
+            console.log('Hello');
 
         })
+        function animate(){
+            const sign = document.querySelector('.taskAdded');
+            sign.style.animation="fadeIn 1s";
+            sign.addEventListener('animationend',()=>{
+                sign.style.animation="none";
+            })
+        }
+    }
+    const clearList = function(){
+        const todoList=document.querySelector(".to-do-list");
+        const projectTitle = document.querySelector(".Project-Title-text");
+        projectTitle.style.border="none";
+        projectTitle.innerHTML="";
+        todoList.innerHTML = '';
     }
     addNewItemHandler();
-    return {renderList};
+    return {renderList,clearList};
 })()

@@ -1,11 +1,10 @@
 import   './sidebar';
 import switchTabs from './switch-projects';
-import ExpandItem from './expand-fold-todo';
+import toDoController from './toDoController';
 import './ProjectsModel'
 import projectsModel from './ProjectsModel';
-import View from  './toDoList-View';
-import handleCheckBoxes from './checkbox-handler';
-import newProject from './ProjectView';
+import View from  './toDoView';
+import newProject from './ProjectsView';
 switchTabs.switchTabs();
 projectsModel.newProject("Today Tasks");
 projectsModel.newTask("Do something productive about your life","25.05.2020",
@@ -19,5 +18,4 @@ const sidebarLinks = document.querySelectorAll(".sidebar a");
 let activeProject = sidebarLinks[0].textContent;
 View.renderList(activeProject);
 newProject.addProjectHandler();
-ExpandItem();
-handleCheckBoxes.checkBoxes();
+toDoController();
