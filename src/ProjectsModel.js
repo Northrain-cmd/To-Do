@@ -28,6 +28,13 @@ export default (function projectsModel(){
                 })
                 projects[switchTabs.getActiveProject()].todoList.splice(index,1);
     }
+    const editTask = function (toDo,title,dueDate,description,importance){
+           toDo.title = title;
+           toDo.dueDate = dueDate;
+           toDo.description = description;
+           toDo.importance = importance;
+           console.log(projects);
+        }
     const doesAlreadyExist = function(title,date){
         if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
             return todo.title === title && todo.dueDate === date;
@@ -38,8 +45,13 @@ export default (function projectsModel(){
             return false
         } 
     }
+    const returnToDo = function (title,projectName){
+        return projects[projectName].todoList.find((todo)=>{
+            return title === todo.title;
+        })
+    }
     const checkBox = function (index){
         projects[switchTabs.getActiveProject()].todoList[index].checked = !projects[switchTabs.getActiveProject()].todoList[index].checked;
     }
-    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,doesAlreadyExist, checkBox}
+    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,editTask,doesAlreadyExist,returnToDo, checkBox}
 })()

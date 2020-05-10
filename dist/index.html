@@ -37,31 +37,6 @@
             </div>
             <div class="to-do-list">
                 <!----
-                <div class="to-do-item first">
-                    <div class="wrap">
-                        <div class="first-row">
-                            <i class="fas fa-trash-alt delete-button"></i>
-                            <p class="title">Do Something Productive About Your Life </p>
-                        </div>
-                        <div class="description">
-                            <span>&#9881;</span>
-                            <p>Description goes here</p>
-                        </div>
-                        <div class="fold-item">
-                            <button>&#9650;</button>
-                        </div>
-                        <div class="second-row">
-                            <i class="far fa-clock"></i>
-                            <p class="due-date">25.05.2020</p>
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                    </div>
-                    <label class="container">
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                      </label>
-                    
-                </div>
                 <div class="to-do-item ">
                     <div class="wrap">
                         <div class="first-row">
@@ -100,11 +75,11 @@
                 </label>
                 <label for="importance">Importance</label>
                 <div class="switch-toggle switch-3 switch-candy">
-                    <input id="regular"  name="state-d" type="radio" checked="checked" value="Regular" />
+                    <input id="regular" class="addInput"  name="state-d" type="radio" checked="checked" value="Regular" />
                     <label for="regular"> <i style="font-size: 1.4em;color:green;margin-top: 20%;" class="fas fa-exclamation-circle"></i></label>
-                    <input id="moderate" name="state-d" type="radio" value="Moderate"   />
+                    <input id="moderate" name="state-d" class="addInput"  type="radio" value="Moderate"   />
                     <label for="moderate" class="" onclick=""> <i style="font-size: 1.4em;color:orange;margin-top: 20%;" class="fas fa-exclamation-circle"></i></label>
-                    <input id="high" name="state-d" value="High" type="radio" />
+                    <input id="high" name="state-d" class="addInput"  value="High" type="radio" />
                     <label for="high"> <i style="font-size: 1.4em;color:red;margin-top: 20%;" class="fas fa-exclamation-circle"></i></label>
                     <a></a>
                   </div>
@@ -112,6 +87,30 @@
                         <input type="text" name="description">
                     </label>
                     <button type="submit">Add</button>
+                    
+            </form>
+            <form action="#" class="editItem">
+                <i class ="taskAdded">Task added</i>
+                <label>Title
+                    <input type="text" name="title" id="titleInput" required id="title">
+                </label>
+                <label>Due Date
+                     <input type="date" name="date" required id="date">
+                </label>
+                <label for="importance">Importance</label>
+                <div class="switch-toggle switch-3 switch-candy">
+                    <input id="regular1" class="myToggle"  name="state-d" type="radio" value="Regular" />
+                    <label for="regular1"> <i style="font-size: 1.4em;color:green;margin-top: 20%;" class="fas fa-exclamation-circle"></i></label>
+                    <input id="moderate1" class="myToggle" name="state-d" type="radio" value="Moderate"   />
+                    <label for="moderate1" class="" onclick=""> <i style="font-size: 1.4em;color:orange;margin-top: 20%;" class="fas fa-exclamation-circle"></i></label>
+                    <input id="high1" class="myToggle" name="state-d" value="High" type="radio" />
+                    <label for="high1"> <i style="font-size: 1.4em;color:red;margin-top: 20%;" class="fas fa-exclamation-circle"></i></label>
+                    <a></a>
+                </div>
+                  <label >Description
+                    <input type="text" name="description">
+                </label>
+                  <button type="submit">Save</button>
                     
             </form>
             <div class="add">

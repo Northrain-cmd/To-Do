@@ -4,6 +4,19 @@ import switchProjects from "./switch-projects";
 import ProjectsModel from "./ProjectsModel";
 export default (function toDoListView(){
     const projectTitle = document.querySelector(".Project-Title-text");
+    const renderToggle = function(toDo,importance){
+        switch (toDo.importance){
+            case "Regular":
+                importance.style.color="green";
+                break
+            case "Moderate":
+                importance.style.color="orange";
+                break
+            case "High":
+                importance.style.color="red";
+                break
+        }
+    }
     function appendItem(toDo){
         let todoList = document.querySelector(".to-do-list");
        
@@ -25,6 +38,7 @@ export default (function toDoListView(){
                     description.classList.add("description");
                         let change =  document.createElement("span");
                         change.innerHTML = "&#9881;";
+                        change.classList.add("editToDo");
                     description.appendChild(change);
                         let descriptionText =  document.createElement("p");
                         descriptionText.textContent = toDo.description;
@@ -43,21 +57,11 @@ export default (function toDoListView(){
                     secondRow.appendChild(clock);
                         let dueDate = document.createElement("p");
                         dueDate.classList.add("due-date");
-                        dueDate.textContent = toDo.dueDate;
+                        dueDate.textContent = format(new Date(toDo.dueDate),"PPP");
                     secondRow.appendChild(dueDate);
-                        let importance = document.createElement("i");
-                        importance.classList.add("fas","fa-exclamation-circle");
-                            switch (toDo.importance){
-                                case "Regular":
-                                    importance.style.color="green";
-                                    break
-                                case "Moderate":
-                                    importance.style.color="orange";
-                                    break
-                                case "High":
-                                    importance.style.color="red";
-                                    break
-                            }
+                    let importance = document.createElement("i");
+                    importance.classList.add("fas","fa-exclamation-circle");
+                        renderToggle(toDo,importance);
                     secondRow.appendChild(importance);
                 wrap.appendChild(secondRow);
             toDoItem.appendChild(wrap);
@@ -93,21 +97,22 @@ export default (function toDoListView(){
                 newForm.style.display="block";
             }
         })
-        const toggle = document.querySelectorAll(".switch-toggle input");
+        const toggle = document.querySelectorAll(".addInput");
         let importance = "Regular";
         toggle.forEach(toggle=>{
             toggle.addEventListener("focus",(e)=>{
                 importance = e.target.value;
+                console.log(importance);
             })
         })
         newForm.addEventListener('submit',(e)=>{
             e.preventDefault();
             const tempDate = new Date(newForm.date.value);
-            if(ProjectsModel.doesAlreadyExist(newForm.title.value,format(tempDate,"PPP"))){
+            if(ProjectsModel.doesAlreadyExist(newForm.title.value,tempDate)){
                 animateWrongName();
             }
             else{
-                projectsModel.newTask(newForm.title.value,format(tempDate,"PPP"),newForm.description.value,
+                projectsModel.newTask(newForm.title.value,tempDate,newForm.description.value,
                                     importance,switchProjects.getActiveProject(),false);
                 const todolist = projectsModel.projects[switchProjects.getActiveProject()].todoList;
                 const todo = todolist[todolist.length-1];
