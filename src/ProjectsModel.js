@@ -22,16 +22,24 @@ export default (function projectsModel(){
     const newTask = function (title,dueDate,description,importance,projectName,checked=false){
         projects[projectName].todoList.push(tasksFactory(title,dueDate,description,importance,checked));
     }
-    const deleteTask = function(title){
+    const deleteTask = function(title,date){
                 let index = projects[switchTabs.getActiveProject()].todoList.findIndex((todo)=>{
-                 return todo.title === title
+                 return todo.title === title && todo.date === date
                 })
                 projects[switchTabs.getActiveProject()].todoList.splice(index,1);
-                console.log(projects);
+    }
+    const doesAlreadyExist = function(title,date){
+        if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
+            return todo.title === title && todo.dueDate === date;
+           })){
+               return true
+           }
+        else  {
+            return false
+        } 
     }
     const checkBox = function (index){
         projects[switchTabs.getActiveProject()].todoList[index].checked = !projects[switchTabs.getActiveProject()].todoList[index].checked;
-        console.log(projects[switchTabs.getActiveProject()].todoList[index].checked);
     }
-    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,checkBox}
+    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,doesAlreadyExist, checkBox}
 })()

@@ -1,5 +1,7 @@
-import projectsModel from "./ProjectsModel"
+import projectsModel from "./ProjectsModel";
+import format from 'date-fns/format';
 import switchProjects from "./switch-projects";
+import ProjectsModel from "./ProjectsModel";
 export default (function toDoListView(){
     const projectTitle = document.querySelector(".Project-Title-text");
     function appendItem(toDo){
@@ -84,7 +86,6 @@ export default (function toDoListView(){
         const newForm = document.querySelector('.addNewItem');
         const addButton = document.querySelector(".addButton");
         addButton.addEventListener('click',()=>{
-            console.log("I here you");
             if(newForm.style.display==="block"){
                 newForm.style.display="none";
             }
@@ -97,25 +98,35 @@ export default (function toDoListView(){
         toggle.forEach(toggle=>{
             toggle.addEventListener("focus",(e)=>{
                 importance = e.target.value;
-                console.log(importance);
             })
         })
         newForm.addEventListener('submit',(e)=>{
             e.preventDefault();
-            projectsModel.newTask(newForm.title.value,newForm.date.value,newForm.description.value,
-                                 importance,switchProjects.getActiveProject(),false);
-            const todolist = projectsModel.projects[switchProjects.getActiveProject()].todoList;
-            const todo = todolist[todolist.length-1];
-            appendItem(todo);
-            animate();
-            console.log('Hello');
-
+            const tempDate = new Date(newForm.date.value);
+            if(ProjectsModel.doesAlreadyExist(newForm.title.value,format(tempDate,"PPP"))){
+                animateWrongName();
+            }
+            else{
+                projectsModel.newTask(newForm.title.value,format(tempDate,"PPP"),newForm.description.value,
+                                    importance,switchProjects.getActiveProject(),false);
+                const todolist = projectsModel.projects[switchProjects.getActiveProject()].todoList;
+                const todo = todolist[todolist.length-1];
+                appendItem(todo);
+                animateAdded();
+            }
         })
-        function animate(){
+        function animateAdded(){
             const sign = document.querySelector('.taskAdded');
             sign.style.animation="fadeIn 1s";
             sign.addEventListener('animationend',()=>{
                 sign.style.animation="none";
+            })
+        }
+        function animateWrongName(){
+            const title = document.getElementById("titleInput");
+            title.style.animation="wrongShake 1s";
+            title.addEventListener('animationend',()=>{
+                title.style.animation="none";
             })
         }
     }

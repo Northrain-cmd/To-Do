@@ -94,6 +94,47 @@ box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
         opacity: 0;
     }
 }
+@keyframes wrongShake{
+   
+    0%{
+        border: 2px solid red;
+        transform: translateX(0px);
+    }
+    10%{
+        transform:translateX(15px);
+    }
+    20%{
+        transform: translateX(0px);
+    }
+    30%{
+        transform:translateX(15px);
+    }
+    40%{
+        transform:translateX(0px);
+    }
+    50%{
+        transform:translateX(15px);
+    }
+    60%{
+        transform:translateX(0px);
+    }
+    70%{
+        transform:translateX(15px);
+    }
+    80%{
+        transform:translateX(0px);
+    }
+    90%{
+        transform:translateX(15px);
+    }
+    100%{
+        transform: translateX(0px);
+        border: 2px solid red;
+    }
+}
+#titleInput{
+    display: inline-block;
+}
 .addNewItem > *{
     padding: 1% 0;
     margin-left: 10%;

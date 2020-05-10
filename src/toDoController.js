@@ -8,7 +8,8 @@ export default function toDoController(){
                 e.target.parentNode.nextElementSibling.nextElementSibling.style.display="flex";
             }
             else if(e.target.classList.contains("delete-button")){
-                ProjectsModel.deleteTask(e.target.nextElementSibling.textContent);
+                ProjectsModel.deleteTask(e.target.nextElementSibling.textContent,
+                                        e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.querySelector('.due-date').textContent);
                 toDoList.removeChild(e.target.parentNode.parentNode.parentNode);
 
             }
