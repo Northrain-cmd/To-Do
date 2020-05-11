@@ -75,6 +75,7 @@ export default function toDoController(){
                 const checkMarksArray= [...checkmarks];
                 const index = checkMarksArray.indexOf(e.target.previousElementSibling);
                 ProjectsModel.checkBox(index);
+                e.target.parentNode.parentNode.classList.toggle("taskCompleted");
             }
             else if(e.target.parentNode.classList.contains("fold-item")){
                 e.target.parentNode.style.display="none";
