@@ -7,13 +7,19 @@ export default function toDoController(){
         const inputs = editForm.querySelectorAll(".myToggle");
         switch(toDo.importance){
             case "Regular":
-                inputs[0].checked = ! inputs[0].checked;
+                inputs[0].checked = true;
+                inputs[1].checked = false;
+                inputs[2].checked = false;
                 break
             case "Moderate":
-                inputs[1].checked = ! inputs[1].checked;
+                inputs[1].checked = true;
+                inputs[0].checked = false;
+                inputs[2].checked = false;
                 break
             case "High":
-                inputs[2].checked = ! inputs[2].checked;
+                inputs[2].checked = true;
+                inputs[1].checked = false;
+                inputs[0].checked = false;
                 break
             default:
         }
@@ -24,7 +30,6 @@ export default function toDoController(){
             inputs.forEach(toggle=>{
                 toggle.addEventListener("click",(e)=>{
                     importance = e.target.value;
-                    console.log(importance);
                 })
             })     
         }
@@ -35,11 +40,12 @@ export default function toDoController(){
                 e.target.parentNode.nextElementSibling.style.display="flex";
                 e.target.parentNode.nextElementSibling.nextElementSibling.style.display="flex";
             }
-            
+
             else if(e.target.classList.contains("editToDo")){
                 editForm.style.display= "flex";
                 editForm.title.value=e.target.parentNode.previousElementSibling.lastChild.textContent;
                 let toDo=ProjectsModel.returnToDo(editForm.title.value,switchProjects.getActiveProject());
+                importance = toDo.importance;
                 editForm.date.value= toDo.dueDate;
                 showToggle(editForm,toDo,importance);
                 editForm.description.value = toDo.description;
@@ -52,6 +58,7 @@ export default function toDoController(){
                     toDoView.renderList(switchProjects.getActiveProject())
                     editForm.removeEventListener("submit",handleSubmit);
                     editForm.style.display="none";
+                    toDo=ProjectsModel.returnToDo(editForm.title.value,switchProjects.getActiveProject());
                 }
                 editForm.addEventListener('submit',handleSubmit);
             }

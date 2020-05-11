@@ -37,7 +37,7 @@ export default (function projectsModel(){
         }
     const doesAlreadyExist = function(title,date){
         if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
-            return todo.title === title && todo.dueDate === date;
+            return todo.title === title && Date.parse(todo.dueDate) === Date.parse(date.toString());
            })){
                return true
            }
