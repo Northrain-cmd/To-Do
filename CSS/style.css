@@ -60,6 +60,13 @@ html{
         
    
 }
+.cl-switch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.5em;
+    margin-right: 2%;
+}
 .addNewItem{
     -webkit-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
 -moz-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
@@ -225,7 +232,7 @@ input[type="button"]{
     overflow-wrap: break-word;
     max-width: 90%;
     margin:0;
-    margin-right: 10%;
+    /*margin-right: 10%;*/
     margin-left: auto;
     background-color: lightcoral;
     font-size: 1em;
