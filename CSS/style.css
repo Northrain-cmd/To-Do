@@ -26,6 +26,13 @@ html{
     font-family: Arial;
     
 }
+.taskCompleted{
+    opacity: .7;
+    background-color: #CCC !important;
+}
+.taskCompleted p{
+    text-decoration: line-through;
+}
 .pencil{
     margin:0;
     display:block;
@@ -293,6 +300,7 @@ input[type="button"]{
 .description p{
     margin:2% 0;
     margin-left: 10%;
+    width: 90%;
 }
 .description span{
     margin-bottom: 5%;
