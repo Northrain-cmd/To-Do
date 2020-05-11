@@ -1,7 +1,7 @@
 import ProjectsModel from "./ProjectsModel";
 import switchProjects from "./switch-projects";
 import toDoView from "./toDoView";
-
+import format from 'date-fns/format';
 export default function toDoController(){
     function showToggle(editForm,toDo){
         const inputs = editForm.querySelectorAll(".myToggle");
@@ -46,13 +46,15 @@ export default function toDoController(){
                 editForm.title.value=e.target.parentNode.previousElementSibling.lastChild.textContent;
                 let toDo=ProjectsModel.returnToDo(editForm.title.value,switchProjects.getActiveProject());
                 importance = toDo.importance;
-                editForm.date.value= toDo.dueDate;
+                console.log(toDo.dueDate);
+                console.log(format(toDo.dueDate,"yyyy-MM-dd"));
+                editForm.date.value= format(toDo.dueDate,"yyyy-MM-dd");
                 showToggle(editForm,toDo,importance);
                 editForm.description.value = toDo.description;
                 getImportance();
                 function handleSubmit(e){
                     e.preventDefault();
-                    ProjectsModel.editTask(toDo,editForm.title.value,editForm.date.value,
+                    ProjectsModel.editTask(toDo,editForm.title.value,new Date(editForm.date.value),
                                            editForm.description.value,importance);
                     toDoView.clearList();
                     toDoView.renderList(switchProjects.getActiveProject())

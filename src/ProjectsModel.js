@@ -33,7 +33,6 @@ export default (function projectsModel(){
            toDo.dueDate = dueDate;
            toDo.description = description;
            toDo.importance = importance;
-           console.log(projects);
         }
     const doesAlreadyExist = function(title,date){
         if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
