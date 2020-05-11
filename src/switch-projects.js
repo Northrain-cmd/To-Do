@@ -26,7 +26,7 @@ export default (function (){
                     setActiveProject(link.textContent);
                     projectTitle.textContent = link.textContent;
                     clearList.clearList();
-                    View.renderList(activeProject);
+                    View.renderUnchecked(activeProject);
                 }
 
             })

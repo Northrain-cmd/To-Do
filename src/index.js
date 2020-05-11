@@ -26,7 +26,7 @@ projectsModel.newProject("Today Tasks");
 }*/
 const sidebarLinks = document.querySelectorAll(".sidebar a");
 let activeProject = sidebarLinks[0].textContent;
-View.renderList(activeProject);
+View.renderUnchecked(activeProject);
 newProject.addProjectHandler();
 switchTabs.switchTabs();
 toDoController();

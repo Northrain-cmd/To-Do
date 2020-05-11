@@ -3,6 +3,25 @@ import switchProjects from "./switch-projects";
 import toDoView from "./toDoView";
 import format from 'date-fns/format';
 export default function toDoController(){
+    let showCompleted = false;
+    const showChecked = document.querySelector(".showChecked");
+    showChecked.checked = false;
+    (function showCheckedMode(){
+        const shwoChecked = document.querySelector(".showChecked");
+        shwoChecked.addEventListener('click',(e)=>{
+            if(shwoChecked.checked === true){
+                showCompleted = true;
+                toDoView.clearList();
+                toDoView.renderChecked(switchProjects.getActiveProject());
+            }
+            else{
+                showCompleted = false;
+                toDoView.clearList();
+                toDoView.renderUnchecked(switchProjects.getActiveProject());
+            }
+        })
+        
+    })()
     function showToggle(editForm,toDo){
         const inputs = editForm.querySelectorAll(".myToggle");
         switch(toDo.importance){
@@ -57,7 +76,9 @@ export default function toDoController(){
                     ProjectsModel.editTask(toDo,editForm.title.value,new Date(editForm.date.value),
                                            editForm.description.value,importance);
                     toDoView.clearList();
-                    toDoView.renderList(switchProjects.getActiveProject())
+                    if(showCompleted === true) toDoView.renderChecked(switchProjects.getActiveProject())
+                    else toDoView.renderUnchecked(switchProjects.getActiveProject())
+                   
                     editForm.removeEventListener("submit",handleSubmit);
                     editForm.style.display="none";
                     toDo=ProjectsModel.returnToDo(editForm.title.value,switchProjects.getActiveProject());
@@ -71,11 +92,14 @@ export default function toDoController(){
 
             }
             else if(e.target.classList.contains("checkmark")){
-                const checkmarks = document.querySelectorAll(".checkbox");
-                const checkMarksArray= [...checkmarks];
-                const index = checkMarksArray.indexOf(e.target.previousElementSibling);
-                ProjectsModel.checkBox(index);
+                const title = e.target.parentNode.previousElementSibling.firstChild.children[1].textContent;
+                const date = e.target.parentNode.previousElementSibling.lastChild.children[1].textContent;
+                ProjectsModel.checkBox(title,date);
+                if(showCompleted) return
                 e.target.parentNode.parentNode.classList.toggle("taskCompleted");
+                setTimeout(()=>{
+                    toDoList.removeChild(e.target.parentNode.parentNode);
+                },300)
             }
             else if(e.target.parentNode.classList.contains("fold-item")){
                 e.target.parentNode.style.display="none";

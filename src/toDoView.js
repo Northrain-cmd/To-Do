@@ -1,4 +1,3 @@
-import projectsModel from "./ProjectsModel";
 import format from 'date-fns/format';
 import switchProjects from "./switch-projects";
 import ProjectsModel from "./ProjectsModel";
@@ -78,13 +77,40 @@ export default (function toDoListView(){
             toDoItem.appendChild(label);
         todoList.appendChild(toDoItem);
         }
-    const renderList = function (projectName){
+    const renderChecked = function (projectName){
         projectTitle.innerHTML=projectName;
         projectTitle.style.border="1px solid white";
-        projectsModel.projects[projectName].todoList.forEach(toDo =>{
+        ProjectsModel.projects[projectName].todoList.sort((a,b)=>{
+            let table = {"Regular":1,"Moderate":2,"High":3};
+            return table[b.importance]-table[a.importance];
+            
+        }).sort((a,b)=>{
+            let table = {true:1,false:2};
+            return table[b.checked]-table[a.checked];
+        }).forEach(toDo =>{
             
             appendItem(toDo);
         })
+    }
+    const renderUnchecked = function (projectName){
+        projectTitle.innerHTML=projectName;
+        projectTitle.style.border="1px solid white";
+        ProjectsModel.projects[projectName].todoList.filter((item)=>{
+            return item.checked === false;
+        }).sort((a,b)=>{
+            let table = {"Regular":1,"Moderate":2,"High":3};
+            return table[b.importance]-table[a.importance];
+            
+        }).forEach(toDo =>{
+            appendItem(toDo);
+        })
+        console.log(ProjectsModel.projects[projectName].todoList.filter((item)=>{
+            return item.checked === "false";
+        }).sort((a,b)=>{
+            let table = {"Regular":1,"Moderate":2,"High":3};
+            return table[b.importance]-table[a.importance];
+            
+        }))
     }
     const addNewItemHandler = function(){
         const newForm = document.querySelector('.addNewItem');
@@ -112,17 +138,17 @@ export default (function toDoListView(){
                 animateWrongName();
             }
             else{
-                projectsModel.newTask(newForm.title.value,tempDate,newForm.description.value,
-                                    importance,switchProjects.getActiveProject(),false);
-                const todolist = projectsModel.projects[switchProjects.getActiveProject()].todoList;
-                const todo = todolist[todolist.length-1];
-                appendItem(todo);
+                const activeProject = switchProjects.getActiveProject();
+                ProjectsModel.newTask(newForm.title.value,tempDate,newForm.description.value,
+                                    importance,activeProject,false);
                 animateAdded();
+                clearList();
+                renderUnchecked(activeProject);
             }
         })
         function animateAdded(){
             const sign = document.querySelector('.taskAdded');
-            sign.style.animation="fadeIn 1s";
+            sign.style.animation="fadeIn .5s";
             sign.addEventListener('animationend',()=>{
                 sign.style.animation="none";
             })
@@ -143,5 +169,5 @@ export default (function toDoListView(){
         todoList.innerHTML = '';
     }
     addNewItemHandler();
-    return {renderList,clearList};
+    return {renderChecked,clearList,renderUnchecked};
 })()

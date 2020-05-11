@@ -1,4 +1,6 @@
 import switchTabs from './switch-projects';
+import parse from 'date-fns/parse';
+import format from 'date-fns/format';
 export default (function projectsModel(){
     const projects = {};
     const projectsFactory = function (title){
@@ -49,8 +51,11 @@ export default (function projectsModel(){
             return title === todo.title;
         })
     }
-    const checkBox = function (index){
-        projects[switchTabs.getActiveProject()].todoList[index].checked = !projects[switchTabs.getActiveProject()].todoList[index].checked;
-    }
+    const checkBox = function (title,date){
+       let checkedVar = projects[switchTabs.getActiveProject()].todoList.find((todo)=>{
+            return todo.title === title && format(todo.dueDate,"PPP") === date;
+           })
+        checkedVar.checked = ! checkedVar.checked;
+        }
     return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,editTask,doesAlreadyExist,returnToDo, checkBox}
 })()
