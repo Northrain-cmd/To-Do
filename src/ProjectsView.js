@@ -3,30 +3,33 @@ import ProjectsModel from "./ProjectsModel";
 import clearList from "./toDoView";
 
 export default (function(){
-    const addProjectBtn = document.querySelector(".new-project-submit");
-    const inputForm = document.querySelector(".new-project");
+    const inputField = document.querySelector(".new-project");
+    const inputForm = document.querySelector(".new-project-form");
     const sidebar = document.querySelector(".sidebar");
     const foldButton = document.querySelector('#fold-sidebar');
-    const addProjectHandler = ()=>{
-             const projectTitle = document.querySelector(".Project-Title-text");
-        addProjectBtn.addEventListener('click',()=>{
-            const newProject = document.createElement("div");
-            newProject.classList.add("deleteProjectDiv");
-            const newProjectText = document.createElement("a");
-            const newProjectButton = document.createElement("button");
-            newProjectButton.classList.add("deleteProject");
-            newProjectButton.innerHTML = "&#10060;";
-            newProjectText.href = "#";
-            newProject.append(newProjectButton,newProjectText);
-            if(!inputForm.value) alert("Please choose a name for this project");
-            else if(!(inputForm.value in ProjectsModel.projects)){
-                newProjectText.textContent = inputForm.value;
-                sidebar.insertBefore(newProject,foldButton);
-                ProjectsModel.newProject(inputForm.value);
-                projectTitle.style.border="1px solid white";
-            }
-            else alert("Project with this name already exists");
-            switchProjects.switchTabs();
+    const addProjectHandler = function (){
+                    const projectTitle = document.querySelector(".Project-Title-text");
+                    inputForm.addEventListener('submit',(e)=>{
+                            e.preventDefault();
+                            const newProject = document.createElement("div");
+                            newProject.classList.add("deleteProjectDiv");
+                            const newProjectText = document.createElement("a");
+                            const newProjectButton = document.createElement("button");
+                            newProjectButton.classList.add("deleteProject");
+                            newProjectButton.innerHTML = "&#10060;";
+                            newProjectText.href = "#";
+                            newProject.append(newProjectButton,newProjectText);
+                            if(!inputField.value) alert("Please choose a name for this project");
+                            else if(!(inputField.value in ProjectsModel.projects)){
+                                newProjectText.textContent = inputField.value;
+                                sidebar.insertBefore(newProject,foldButton);
+                                ProjectsModel.newProject(inputField.value);
+                                projectTitle.style.border="1px solid white";
+                                switchProjects.switchTabs();
+                                inputForm.reset();
+                            }
+                            else alert("Project with this name already exists");
+            
         
         })
                 handleProjectsDeleteButtons();

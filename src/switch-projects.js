@@ -1,5 +1,6 @@
 import View from './toDoView'
 import clearList from './toDoView';
+import toDoController from './toDoController';
 export default (function (){
     let activeProject;
     let sidebarLinks = document.querySelectorAll(".sidebar a");
@@ -26,6 +27,7 @@ export default (function (){
                     setActiveProject(link.textContent);
                     projectTitle.textContent = link.textContent;
                     clearList.clearList();
+                    toDoController.setShowCompleted(false);
                     View.renderUnchecked(activeProject);
                 }
 

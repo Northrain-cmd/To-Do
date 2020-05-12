@@ -26,7 +26,7 @@ export default (function projectsModel(){
     }
     const deleteTask = function(title,date){
                 let index = projects[switchTabs.getActiveProject()].todoList.findIndex((todo)=>{
-                 return todo.title === title && todo.date === date
+                 return todo.title === title && format(todo.dueDate,"MM-dd-yyyy") === format(parse(date,'PPP',new Date()),"MM-dd-yyyy")
                 })
                 projects[switchTabs.getActiveProject()].todoList.splice(index,1);
     }
@@ -36,6 +36,22 @@ export default (function projectsModel(){
            toDo.description = description;
            toDo.importance = importance;
         }
+    const doesAlreadyExistForEdit = function(title,date) {
+        let tmpArray = [...projects[switchTabs.getActiveProject()].todoList];
+        let index = tmpArray.findIndex(item=>{
+            return item.title === title  && format(item.dueDate,"MM-dd-yyyy") === format(date,"MM-dd-yyyy");
+        })
+        tmpArray.splice(index,1);
+        console.log(tmpArray,projects[switchTabs.getActiveProject()].todoList)
+        if(tmpArray.some((todo)=>{
+            return todo.title === title && format(todo.dueDate,"MM-dd-yyyy") ===  format(date,"MM-dd-yyyy");
+           })){
+               return true
+           }
+        else  {
+            return false
+        } 
+    }
     const doesAlreadyExist = function(title,date){
         if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
             return todo.title === title && Date.parse(todo.dueDate) === Date.parse(date.toString());
@@ -46,9 +62,9 @@ export default (function projectsModel(){
             return false
         } 
     }
-    const returnToDo = function (title,projectName){
-        return projects[projectName].todoList.find((todo)=>{
-            return title === todo.title;
+    const returnToDo = function (title,date){
+        return projects[switchTabs.getActiveProject()].todoList.find((todo)=>{
+            return todo.title === title && format(todo.dueDate,"MM-dd-yyyy") === format(parse(date,'PPP',new Date()),"MM-dd-yyyy");
         })
     }
     const checkBox = function (title,date){
@@ -57,5 +73,5 @@ export default (function projectsModel(){
            })
         checkedVar.checked = ! checkedVar.checked;
         }
-    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,editTask,doesAlreadyExist,returnToDo, checkBox}
+    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,editTask,doesAlreadyExist,doesAlreadyExistForEdit, returnToDo, checkBox}
 })()

@@ -27,6 +27,8 @@ projectsModel.newProject("Today Tasks");
 const sidebarLinks = document.querySelectorAll(".sidebar a");
 let activeProject = sidebarLinks[0].textContent;
 View.renderUnchecked(activeProject);
+toDoController.controlFlow();
 newProject.addProjectHandler();
+View.addNewItemHandler();
 switchTabs.switchTabs();
-toDoController();
+

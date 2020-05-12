@@ -1,6 +1,7 @@
 import format from 'date-fns/format';
 import switchProjects from "./switch-projects";
 import ProjectsModel from "./ProjectsModel";
+import toDoController from './toDoController';
 export default (function toDoListView(){
     const projectTitle = document.querySelector(".Project-Title-text");
     const renderToggle = function(toDo,importance){
@@ -104,13 +105,6 @@ export default (function toDoListView(){
         }).forEach(toDo =>{
             appendItem(toDo);
         })
-        console.log(ProjectsModel.projects[projectName].todoList.filter((item)=>{
-            return item.checked === "false";
-        }).sort((a,b)=>{
-            let table = {"Regular":1,"Moderate":2,"High":3};
-            return table[b.importance]-table[a.importance];
-            
-        }))
     }
     const addNewItemHandler = function(){
         const newForm = document.querySelector('.addNewItem');
@@ -135,7 +129,7 @@ export default (function toDoListView(){
             e.preventDefault();
             const tempDate = new Date(newForm.date.value);
             if(ProjectsModel.doesAlreadyExist(newForm.title.value,tempDate)){
-                animateWrongName();
+                animateWrongName("titleInput");
             }
             else{
                 const activeProject = switchProjects.getActiveProject();
@@ -143,7 +137,12 @@ export default (function toDoListView(){
                                     importance,activeProject,false);
                 animateAdded();
                 clearList();
-                renderUnchecked(activeProject);
+                console.log(toDoController.getShowCheckedState())
+                if(toDoController.getShowCheckedState()){
+                    renderChecked(activeProject);
+                }
+                else renderUnchecked(activeProject);
+                newForm.reset();
             }
         })
         function animateAdded(){
@@ -153,13 +152,14 @@ export default (function toDoListView(){
                 sign.style.animation="none";
             })
         }
-        function animateWrongName(){
-            const title = document.getElementById("titleInput");
+        
+    }
+        const animateWrongName= function(id){
+            const title = document.getElementById(id);
             title.style.animation="wrongShake 1s";
             title.addEventListener('animationend',()=>{
                 title.style.animation="none";
             })
-        }
     }
     const clearList = function(){
         const todoList=document.querySelector(".to-do-list");
@@ -168,6 +168,6 @@ export default (function toDoListView(){
         projectTitle.innerHTML="";
         todoList.innerHTML = '';
     }
-    addNewItemHandler();
-    return {renderChecked,clearList,renderUnchecked};
+    //addNewItemHandler();
+    return {renderChecked,clearList,addNewItemHandler,renderUnchecked,animateWrongName};
 })()
