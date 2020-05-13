@@ -36,21 +36,23 @@ export default (function projectsModel(){
            toDo.description = description;
            toDo.importance = importance;
         }
-    const doesAlreadyExistForEdit = function(title,date) {
-        let tmpArray = [...projects[switchTabs.getActiveProject()].todoList];
-        let index = tmpArray.findIndex(item=>{
-            return item.title === title  && format(item.dueDate,"MM-dd-yyyy") === format(date,"MM-dd-yyyy");
-        })
-        tmpArray.splice(index,1);
-        console.log(tmpArray,projects[switchTabs.getActiveProject()].todoList)
-        if(tmpArray.some((todo)=>{
-            return todo.title === title && format(todo.dueDate,"MM-dd-yyyy") ===  format(date,"MM-dd-yyyy");
-           })){
-               return true
-           }
-        else  {
+    const doesAlreadyExistForEdit = function(toDo,title,date) {
+        if(toDo.title === title && format(toDo.dueDate,"MM-dd-yyyy") === format(date,"MM-dd-yyyy")){
             return false
-        } 
+        }
+        else{
+            if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
+                return todo.title === title && format(todo.dueDate,"MM-dd-yyyy") ===  format(date,"MM-dd-yyyy");
+            })){
+                return true
+            }
+            else  {
+                return false
+            } 
+        }
+    }
+    const projectAlreadyExists = function (projectName){
+        return (projects[projectName]) ?  true  : false
     }
     const doesAlreadyExist = function(title,date){
         if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
@@ -73,5 +75,5 @@ export default (function projectsModel(){
            })
         checkedVar.checked = ! checkedVar.checked;
         }
-    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,editTask,doesAlreadyExist,doesAlreadyExistForEdit, returnToDo, checkBox}
+    return {newProject,projects,newTask,deleteProject,renameObject,deleteTask,editTask,doesAlreadyExist,doesAlreadyExistForEdit,projectAlreadyExists,returnToDo, checkBox}
 })()

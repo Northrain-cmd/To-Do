@@ -1,6 +1,7 @@
 import switchProjects from "./switch-projects";
 import ProjectsModel from "./ProjectsModel";
 import clearList from "./toDoView";
+import toDoView from "./toDoView";
 
 export default (function(){
     const inputField = document.querySelector(".new-project");
@@ -55,12 +56,12 @@ export default (function(){
         const projectTitle = document.querySelector(".Project-Title-text");
         projectTitle.addEventListener('focusout',()=>{
             let activeTab = sidebar.querySelector('.active');
-            if(projectTitle.textContent!== activeTab.textContent){
+            if(projectTitle.textContent!== activeTab.textContent && !(ProjectsModel.projectAlreadyExists(projectTitle.textContent))){
                 ProjectsModel.renameObject(activeTab.textContent,projectTitle.textContent);
                 activeTab.textContent = projectTitle.textContent;
                 switchProjects.setActiveProject(activeTab.textContent);
             }
-            else return ;
+            else toDoView.animateWrongName("project-title");
         })
     }
     return {addProjectHandler}

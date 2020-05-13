@@ -19,6 +19,14 @@
                     <input class="new-project" maxlength="50"  type="text" placeholder="New Project">
                     <button class="new-project-submit" type="submit">&#43;</button>
                 </form>
+                <label class="cl-switch dark-mode cl-switch-green">
+                    <span>Dark Mode</span>
+                    <div>
+                        <input class="darkModeSwitch" type="checkbox">
+                        <span class="switcher"></span>
+                    </div>
+                    
+                </label>
                     <div class="deleteProjectDiv">
                         <button class="deleteProject">&#10060;</button>
                         <a class="active" href="#">Today Tasks</a>
@@ -33,9 +41,9 @@
             <div class="project">
                 <button type="button" class="toggle-sidebar">&#9776; 	</button>
                 <span class="Project-Title">
-                    <h2 class="Project-Title-text"  contenteditable="true" >Today Tasks</h2>
+                    <h2 class="Project-Title-text" id="project-title"  contenteditable="true" >Today Tasks</h2>
                 </span>
-                <label class="cl-switch cl-switch-green">
+                <label class="cl-switch completed cl-switch-green">
                     <span>Show Completed</span>
                     <div>
                         <input class="showChecked" type="checkbox">

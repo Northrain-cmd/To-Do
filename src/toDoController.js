@@ -3,12 +3,23 @@ import switchProjects from "./switch-projects";
 import toDoView from "./toDoView";
 import format from 'date-fns/format';
 export default (function toDoController(){
+    let darkMode = false;
+    const darkModeSwitch = document.querySelector(".darkModeSwitch");
+    darkModeSwitch.checked = false;
+    darkModeSwitch.addEventListener("click",()=>{
+        if(darkModeSwitch.checked === true){
+            darkMode = true;
+        }
+        else{
+            darkMode = false;
+        }
+    })
+
     let showCompleted = false;
             const showChecked = document.querySelector(".showChecked");
             showChecked.checked = false;
-                const shwoChecked = document.querySelector(".showChecked");
-                shwoChecked.addEventListener('click',(e)=>{
-                    if(shwoChecked.checked === true){
+                showChecked.addEventListener('click',(e)=>{
+                    if(showChecked.checked === true){
                         showCompleted = true;
                         toDoView.clearList();
                         toDoView.renderChecked(switchProjects.getActiveProject());
@@ -70,7 +81,7 @@ export default (function toDoController(){
                         getImportance();
                         function handleSubmit(e){
                             e.preventDefault();
-                            if(!(ProjectsModel.doesAlreadyExistForEdit(editForm.title.value,new Date(editForm.date.value)))){
+                            if(!(ProjectsModel.doesAlreadyExistForEdit(toDo,editForm.title.value,new Date(editForm.date.value)))){
 
                             
                                 ProjectsModel.editTask(toDo,editForm.title.value,new Date(editForm.date.value),
@@ -117,5 +128,11 @@ export default (function toDoController(){
         const setShowCompleted = function (value){
             showChecked.checked = value;
         }
-        return {getShowCheckedState,setShowCompleted, controlFlow}
+        const getDarkModeState = function(){
+            return darkModeSwitch.checked;
+        }
+        const setDarkMode = function (value){
+            darkModeSwitch.checked = value;
+        }
+        return {getShowCheckedState,setShowCompleted,getDarkModeState,setDarkMode,controlFlow}
         })()
