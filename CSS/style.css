@@ -2,9 +2,8 @@
 html{
     min-height: 100vh;
     font-size: 24px;
-    background: url(../Images/background-mobile.png)  no-repeat ;
-    background-position: 20% 1%;
-    background-size: cover;
+    background-color: #21D4FD;
+    background-image: linear-gradient(270deg, #21D4FD 0%, #B721FF 100%);
 }
 .wrapper{
     min-height: 100vh;
@@ -60,17 +59,30 @@ html{
         
    
 }
-.cl-switch{
+.dark-mode{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+    margin-left: 7%;
+    font-size: 0.8em;
+    background-color: black;
+    color: white;
+    width:90%;
+    margin-bottom: 5%;
+}
+.completed{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 0.5em;
+    font-size: 0.45em;
     margin-right: 2%;
+    color: white;
 }
 .addNewItem{
     -webkit-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
--moz-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+    box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
     display: flex;
     flex-direction: column;
     width:80%;
@@ -169,8 +181,8 @@ box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
 }
 .editItem{
     -webkit-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
--moz-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
+    box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -208,7 +220,7 @@ box-shadow: inset 10px 10px 58px -8px rgba(0,0,0,0.75);
 #fold-sidebar{
     width: 15%;
     font-size: 2em;
-    color:#8080f0;
+    color:white;
     border: none;
     background-color: initial;
     position: fixed;
@@ -232,7 +244,6 @@ input[type="button"]{
     overflow-wrap: break-word;
     max-width: 90%;
     margin:0;
-    /*margin-right: 10%;*/
     margin-left: auto;
     background-color: lightcoral;
     font-size: 1em;
@@ -361,7 +372,7 @@ input[type="button"]{
     margin-right: 5%;
     margin-bottom: 1%;
     padding: 0;
-    color: #80b8f0;
+    color: green;
 }
 .delete-button{
     color: red;
@@ -493,7 +504,7 @@ input[type="button"]{
     max-width: 70%;
     z-index: 1000;
     flex-direction: column;
-    background-color: #DADADA;
+    background-color: #B721FF;
     position: fixed;
     height: 100%;
     overflow: auto ;
@@ -504,7 +515,7 @@ input[type="button"]{
   .sidebar a {
     word-wrap: break-word;
     display: block;
-    color: #05a;
+    color: white;
     min-height: 100%;
     text-decoration: none;
   }
@@ -520,7 +531,7 @@ input[type="button"]{
   
   /* Links on mouse-over */
   .sidebar a:hover:not(.active) {
-    background-color: #555;
+    background-color:#80b8f0 ;
     color: white;
   }
   @media only screen and (min-width:300px){
@@ -562,9 +573,6 @@ input[type="button"]{
     .add{
         left:45%;
     }
-    html{
-        background-image: url(../Images/background-desktop.png);
-    }
   }
   @media only screen and (min-width:1000px){
       html{
@@ -592,7 +600,7 @@ input[type="button"]{
             margin: 0;
             padding: 0;
             width: 25%;
-            background-color: #f1f1f1;
+            background-color: inherit;
             position: fixed;
             height: 100%;
             overflow: auto;
