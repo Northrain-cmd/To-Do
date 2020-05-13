@@ -122,7 +122,6 @@ export default (function toDoListView(){
         toggle.forEach(toggle=>{
             toggle.addEventListener("focus",(e)=>{
                 importance = e.target.value;
-                console.log(importance);
             })
         })
         newForm.addEventListener('submit',(e)=>{
@@ -137,7 +136,6 @@ export default (function toDoListView(){
                                     importance,activeProject,false);
                 animateAdded();
                 clearList();
-                console.log(toDoController.getShowCheckedState())
                 if(toDoController.getShowCheckedState()){
                     renderChecked(activeProject);
                 }

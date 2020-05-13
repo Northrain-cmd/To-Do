@@ -28,6 +28,7 @@ export default (function (){
                     projectTitle.textContent = link.textContent;
                     clearList.clearList();
                     toDoController.setShowCompleted(false);
+                    toDoController.controlComplete();
                     View.renderUnchecked(activeProject);
                 }
 

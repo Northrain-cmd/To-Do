@@ -8,8 +8,24 @@ export default (function(){
     const inputForm = document.querySelector(".new-project-form");
     const sidebar = document.querySelector(".sidebar");
     const foldButton = document.querySelector('#fold-sidebar');
+    const projectTitle = document.querySelector(".Project-Title-text");
+    const renderProjects = function (){
+        Object.keys(ProjectsModel.projects).forEach(key=>{
+                const newProject = document.createElement("div");
+                newProject.classList.add("deleteProjectDiv");
+                const newProjectText = document.createElement("a");
+                const newProjectButton = document.createElement("button");
+                newProjectButton.classList.add("deleteProject");
+                newProjectButton.innerHTML = "&#10060;";
+                newProjectText.href = "#";
+                newProject.append(newProjectButton,newProjectText);
+                newProjectText.textContent = key;
+                sidebar.insertBefore(newProject,foldButton);
+                projectTitle.style.border="1px solid white";
+         })
+         sidebar.querySelector("a").classList.add("active");
+    }
     const addProjectHandler = function (){
-                    const projectTitle = document.querySelector(".Project-Title-text");
                     inputForm.addEventListener('submit',(e)=>{
                             e.preventDefault();
                             const newProject = document.createElement("div");
@@ -64,5 +80,5 @@ export default (function(){
             else toDoView.animateWrongName("project-title");
         })
     }
-    return {addProjectHandler}
+    return {addProjectHandler,renderProjects}
 })()

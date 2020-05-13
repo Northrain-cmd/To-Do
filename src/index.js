@@ -4,26 +4,19 @@ import toDoController from './toDoController';
 import './ProjectsModel'
 import projectsModel from './ProjectsModel';
 import View from  './toDoView';
-import newProject from './ProjectsView';
-projectsModel.newProject("Today Tasks");
-        projectsModel.newProject("Tomorrow Tasks");
-        projectsModel.newTask("Do something productive about your life",new Date('2020-10-10'),
-                            "Description Is Right Here","Regular","Today Tasks");
-        projectsModel.newTask("Do something productive right now",new Date('2020-05-10'),
-                            "Here goes my super duper long description","High","Today Tasks");
-        projectsModel.newTask("Do something productive about your life",new Date('2020-10-10'),
-                            "Description Is Right Here","Moderate","Tomorrow Tasks",true);
-/*if(! localStorage.noFirstVisit){
-        projectsModel.newProject("Today Tasks");
-        projectsModel.newProject("Tomorrow Tasks");
-        projectsModel.newTask("Do something productive about your life",new Date('2020-10-10'),
-                            "Description Is Right Here","Regular","Today Tasks");
-        projectsModel.newTask("Do something productive right now",new Date('2020-05-10'),
-                            "Here goes my super duper long description","High","Today Tasks");
-        projectsModel.newTask("Do something productive about your life",new Date('2020-10-10'),
-                            "Description Is Right Here","Moderate","Tomorrow Tasks",true);
+import newProject from './ProjectsView';      
+if(! localStorage.noFirstVisit){
+        projectsModel.newProject("Important");
+        projectsModel.newProject("Movies to watch");
+        projectsModel.newTask("I am a sample task (click me to expand)",new Date('2020-10-03'),
+                            "You can click the project title to rename it","High","Important");
+        projectsModel.newTask("Buy milk",new Date('2020-05-30'),
+                            "Four bottles","Moderate","Important");
+        projectsModel.newTask("Star Wars IX",new Date('2020-06-10'),
+                            "Please don't","Moderate","Movies to watch",false);
         localStorage.noFirstVisit = "1";
-}*/
+}
+newProject.renderProjects();
 const sidebarLinks = document.querySelectorAll(".sidebar a");
 let activeProject = sidebarLinks[0].textContent;
 View.renderUnchecked(activeProject);

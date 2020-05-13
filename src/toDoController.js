@@ -6,16 +6,29 @@ export default (function toDoController(){
     let darkMode = false;
     const darkModeSwitch = document.querySelector(".darkModeSwitch");
     darkModeSwitch.checked = false;
+    let root = document.documentElement;
     darkModeSwitch.addEventListener("click",()=>{
         if(darkModeSwitch.checked === true){
+            root.style.setProperty("--main-bg-image","linear-gradient(270deg, #040a39 0%, #090924 50%, #000000 100%)");
+            root.style.setProperty("--items-bg-color","initial");
+            root.style.setProperty("--items-color","white");
+            root.style.setProperty("--project-bg-color","initial");
+            root.style.setProperty("--sidebar-bg-color","#060624");
+
             darkMode = true;
         }
         else{
+            root.style.setProperty("--main-bg-image","linear-gradient(270deg, #21D4FD 0%, #B721FF 100%)");
+            root.style.setProperty("--items-bg-color","#DADADA");
+            root.style.setProperty("--items-color","black");
+            root.style.setProperty("--project-bg-color","lightcoral");
+            root.style.setProperty("--sidebar-bg-color","#B721FF");
             darkMode = false;
         }
     })
-
-    let showCompleted = false;
+            let showCompleted = false;
+            const showChecked = document.querySelector(".showChecked");
+const controlComplete = function(){
             const showChecked = document.querySelector(".showChecked");
             showChecked.checked = false;
                 showChecked.addEventListener('click',(e)=>{
@@ -30,6 +43,8 @@ export default (function toDoController(){
                         toDoView.renderUnchecked(switchProjects.getActiveProject());
                     }
                 })
+            }
+            controlComplete();
     const controlFlow = function () {
             
             function showToggle(editForm,toDo){
@@ -75,16 +90,16 @@ export default (function toDoController(){
                         editForm.title.value=e.target.parentNode.previousElementSibling.lastChild.textContent;
                         let toDo=ProjectsModel.returnToDo(editForm.title.value,e.target.parentNode.nextElementSibling.nextElementSibling.children[1].textContent);
                         importance = toDo.importance;
-                        editForm.date.value= format(toDo.dueDate,"yyyy-MM-dd");
+                        editForm.date.value=format(new Date(toDo.dueDate),"yyyy-MM-dd");
                         showToggle(editForm,toDo);
                         editForm.description.value = toDo.description;
                         getImportance();
                         function handleSubmit(e){
                             e.preventDefault();
-                            if(!(ProjectsModel.doesAlreadyExistForEdit(toDo,editForm.title.value,new Date(editForm.date.value)))){
+                            if(!(ProjectsModel.doesAlreadyExistForEdit(toDo,editForm.title.value,editForm.date.value))){
 
                             
-                                ProjectsModel.editTask(toDo,editForm.title.value,new Date(editForm.date.value),
+                                ProjectsModel.editTask(toDo,editForm.title.value,editForm.date.value,
                                                     editForm.description.value,importance);
                                 toDoView.clearList();
                                 if(showCompleted === true) toDoView.renderChecked(switchProjects.getActiveProject())
@@ -93,7 +108,6 @@ export default (function toDoController(){
                                 editForm.style.display="none";
                             }
                             else{
-                                console.log("Hi");
                                 toDoView.animateWrongName("titleInputEdit");
                             }
                         }
@@ -109,7 +123,7 @@ export default (function toDoController(){
                         const title = e.target.parentNode.previousElementSibling.firstChild.children[1].textContent;
                         const date = e.target.parentNode.previousElementSibling.lastChild.children[1].textContent;
                         ProjectsModel.checkBox(title,date);
-                        if(showCompleted) return
+                        if(showChecked.checked) return
                         e.target.parentNode.parentNode.classList.toggle("taskCompleted");
                         setTimeout(()=>{
                             toDoList.removeChild(e.target.parentNode.parentNode);
@@ -134,5 +148,5 @@ export default (function toDoController(){
         const setDarkMode = function (value){
             darkModeSwitch.checked = value;
         }
-        return {getShowCheckedState,setShowCompleted,getDarkModeState,setDarkMode,controlFlow}
+        return {getShowCheckedState,setShowCompleted,getDarkModeState,setDarkMode,controlFlow,controlComplete}
         })()
