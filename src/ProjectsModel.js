@@ -1,7 +1,10 @@
 import switchTabs from './switch-projects';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
+import "firebase/firestore";
+
 export default (function projectsModel(){
+    var db = firebase.firestore();
     const projects =  JSON.parse(localStorage.getItem("projects")) || {};
     const projectsFactory = function (title){
         const todoList = [];
@@ -30,25 +33,25 @@ export default (function projectsModel(){
     }
     const deleteTask = function(title,date){
                 let index = projects[switchTabs.getActiveProject()].todoList.findIndex((todo)=>{
-                 return todo.title === title && format(new Date(todo.dueDate),"MM-dd-yyyy") === format(parse(date,"PPP",new Date()),"MM-dd-yyyy")
+                 return todo.title === title && format(new Date(todo.dueDate),"MM/dd/yyyy") === format(parse(date,"PPP",new Date()),"MM/dd/yyyy")
                 })
                 projects[switchTabs.getActiveProject()].todoList.splice(index,1);
                 localStorage.setItem("projects",JSON.stringify(projects));
     }
     const editTask = function (toDo,title,dueDate,description,importance){
            toDo.title = title;
-           toDo.dueDate = dueDate;
+           toDo.dueDate = new Date(dueDate);
            toDo.description = description;
            toDo.importance = importance;
            localStorage.setItem("projects",JSON.stringify(projects));
         }
     const doesAlreadyExistForEdit = function(toDo,title,date) {
-        if(toDo.title === title && format(new Date(toDo.dueDate),"MM-dd-yyyy") === format(parse(date,"yyyy-MM-dd",new Date()),"MM-dd-yyyy")){
+        if(toDo.title === title && format(new Date(toDo.dueDate),"MM/dd/yyyy") === format(parse(date,"yyyy/MM/dd",new Date()),"MM/dd/yyyy")){
             return false
         }
         else{
             if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
-                return todo.title === title && format(new Date(todo.dueDate),"MM-dd-yyyy") === format(parse(date,"yyyy-MM-dd",new Date()),"MM-dd-yyyy")
+                return todo.title === title && format(new Date(todo.dueDate),"MM/dd/yyyy") === format(parse(date,"yyyy/MM/dd",new Date()),"MM/dd/yyyy")
             })){
                 return true
             }
@@ -62,7 +65,7 @@ export default (function projectsModel(){
     }
     const doesAlreadyExist = function(title,date){
         if(projects[switchTabs.getActiveProject()].todoList.some((todo)=>{
-            return todo.title === title && format(new Date(todo.dueDate),"MM-dd-yyyy") === format(date,"MM-dd-yyyy")
+            return todo.title === title && format(new Date(todo.dueDate),"MM/dd/yyyy") === format(date,"MM/dd/yyyy")
            })){
                return true
            }
@@ -72,12 +75,12 @@ export default (function projectsModel(){
     }
     const returnToDo = function (title,date){
         return projects[switchTabs.getActiveProject()].todoList.find((todo)=>{
-            return todo.title === title && format(new Date(todo.dueDate),"MM-dd-yyyy") === format(parse(date,"PPP",new Date()),"MM-dd-yyyy")
+            return todo.title === title && format(new Date(todo.dueDate),"MM/dd/yyyy") === format(parse(date,"PPP",new Date()),"MM/dd/yyyy")
         })
     }
     const checkBox = function (title,date){
        let checkedVar = projects[switchTabs.getActiveProject()].todoList.find((todo)=>{
-        return todo.title === title && format(new Date(todo.dueDate),"MM-dd-yyyy") === format(parse(date,"PPP",new Date()),"MM-dd-yyyy")
+        return todo.title === title && format(new Date(todo.dueDate),"MM/dd/yyyy") === format(parse(date,"PPP",new Date()),"MM/dd/yyyy")
            })
         checkedVar.checked = ! checkedVar.checked;
         localStorage.setItem("projects",JSON.stringify(projects));

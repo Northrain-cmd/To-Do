@@ -1,4 +1,6 @@
-@import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import '~../../node_modules/firebaseui/dist/firebaseui.css';
+@import '~./normalize.css';
+@import '~./clean-switch.css';
 :root{
     --main-bg-color: #21D4FD;
     --main-bg-image:linear-gradient(270deg, #21D4FD 0%, #B721FF 100%);
@@ -18,6 +20,24 @@ html{
 .wrapper{
     min-height: 100vh;
 }
+.firebaseui-form-actions{
+    display: flex;
+}
+#firebaseui-auth-container{
+    min-height: 90vh;
+    width: 80%;
+    left:10%;
+    position: absolute;
+    z-index: 999;
+    background-color: white;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+}
+#firebaseui-auth-container h1{
+    font-size: 1em;
+}
+
 .content{
     margin-left: initial;
     position: relative;
@@ -441,6 +461,41 @@ input[type="button"]{
     border: initial;
     color: white;
 }
+.user{
+    margin: 0;
+    margin-top: auto;
+    font-size: 0.7em;
+    text-align: center;
+    color:white;
+    visibility: hidden;
+}
+#username{
+    color:lightcoral;
+}
+.auth{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 0.7em;
+   
+}
+.auth > *{
+    flex: 1;
+    border: 0;
+    padding: 0.5em;
+    margin: 2px;
+    color: white;
+}
+#loginBtn{
+    background-color: #2196F3;
+}
+#signupBtn{
+    background-color: green;
+}
+#logoutBtn{
+    background-color: darkslategray;
+    display: none;
+}
 /* Checbox Styling */
 .container {
     display: block;
@@ -515,7 +570,7 @@ input[type="button"]{
     margin: 0;
     padding: 0;
     max-width: 70%;
-    z-index: 1000;
+    z-index: 990;
     flex-direction: column;
     background-color: var(--sidebar-bg-color);/* #B721FF*/
     position: fixed;

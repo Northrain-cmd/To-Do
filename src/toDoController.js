@@ -96,10 +96,10 @@ const controlComplete = function(){
                         getImportance();
                         function handleSubmit(e){
                             e.preventDefault();
-                            if(!(ProjectsModel.doesAlreadyExistForEdit(toDo,editForm.title.value,editForm.date.value))){
+                            if(!(ProjectsModel.doesAlreadyExistForEdit(toDo,editForm.title.value,editForm.date.value.replace(/-/g,"/")))){
 
                             
-                                ProjectsModel.editTask(toDo,editForm.title.value,editForm.date.value,
+                                ProjectsModel.editTask(toDo,editForm.title.value,editForm.date.value.replace(/-/g,"/"),
                                                     editForm.description.value,importance);
                                 toDoView.clearList();
                                 if(showCompleted === true) toDoView.renderChecked(switchProjects.getActiveProject())

@@ -56,13 +56,17 @@ export default (function(){
     function handleProjectsDeleteButtons(){
        sidebar.addEventListener('click',(e)=>{
            if (e.target.classList.contains('deleteProject')){
+               const links = sidebar.querySelectorAll("a");
                 let project = e.target.nextElementSibling.textContent;
-               sidebar.removeChild(e.target.parentNode);
-               ProjectsModel.deleteProject(project);
-               if(switchProjects.getActiveProject()=== project){
-                   clearList.clearList();
-               }
-               else return
+                if(links.length>1){
+                     sidebar.removeChild(e.target.parentNode);
+                    ProjectsModel.deleteProject(project);
+                    if(switchProjects.getActiveProject()=== project){
+                        clearList.clearList();
+                    }
+                    else return
+                }
+                 else return
            }
            else return
        })

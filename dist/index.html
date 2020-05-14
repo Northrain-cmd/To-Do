@@ -4,17 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <script defer src="main.js"></script>
-        <link rel="stylesheet" href="CSS/normalize.css">
-        <link rel="stylesheet" href="CSS/style.css">
         <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="CSS/clean-switch.css">
         <link rel="icon" href="favicon2.png" type="image/png">
         <title>To Do</title>
     </head>
     <body>
        
         <div class="wrapper">
+            <div id="firebaseui-auth-container">
+                <h1>Welcome to ToDo</h1>
+            </div>
             <div class="sidebar">
                 <form action="#" class="new-project-form">
                     <input class="new-project" maxlength="50"  type="text" placeholder="New Project">
@@ -28,15 +28,12 @@
                     </div>
                     
                 </label>
-                    <!--<div class="deleteProjectDiv">
-                        <button class="deleteProject">&#10060;</button>
-                        <a class="active" href="#">Important</a>
-                    </div>
-                    <div class="deleteProjectDiv">
-                        <button class="deleteProject">&#10060;</button>
-                        <a class="" href="#">Movies to watch</a>
-                    </div> -->
                 <button type="button" id="fold-sidebar">&#10094;</button>
+                <p class="user">Logged in as:<br><span id="username"></span> </p>
+                <div class="auth">
+                    <button id="loginBtn">Login</button>
+                    <button id="logoutBtn">Logout</button>
+                </div>
               </div>
               <section class="content">
             <div class="project">
@@ -54,34 +51,6 @@
                 </label>
             </div>
             <div class="to-do-list">
-                <!----
-                <div class="to-do-item ">
-                    <div class="wrap">
-                        <div class="first-row">
-                            <i class="fas fa-trash-alt delete-button"></i>
-                            <p class="title">Do Something Productive About Your Life </p>
-                        </div>
-                        <div class="description">
-                            <span>&#9881;</span>
-                            <p>Description goes here</p>
-                        </div>
-                        <div class="fold-item">
-                       <button>&#9650;</button>
-                        </div>
-                        <div class="second-row">
-                            <i class="far fa-clock"></i>
-                            <p class="due-date">25.05.2020</p>
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-        
-                    </div>
-                    <label class="container">
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                      </label>
-                    
-                </div> -->
-                
             </div>
             <form action="#" class="addNewItem">
                 <i class ="taskAdded">Task added</i>
@@ -137,10 +106,7 @@
         </section>
         </div>
 
-
-
-
-
         <script src="https://kit.fontawesome.com/b14cc21095.js" crossorigin="anonymous"></script>
+        
     </body>
     </html>

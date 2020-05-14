@@ -126,8 +126,8 @@ export default (function toDoListView(){
         })
         newForm.addEventListener('submit',(e)=>{
             e.preventDefault();
-            const tempDate = new Date(newForm.date.value);
-            if(ProjectsModel.doesAlreadyExist(newForm.title.value,tempDate)){
+            const tempDate = new Date(newForm.date.value.replace(/-/g,"/"));
+            if(ProjectsModel.doesAlreadyExist(newForm.title.value.replace(/-/g,"/"),tempDate)){
                 animateWrongName("titleInput");
             }
             else{
