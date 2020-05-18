@@ -233,7 +233,9 @@
   font-size: 18px;
 }
 
-.cl-switch.ios.cl-switch-large input[type="checkbox"]:checked + .switcher:before {
+.cl-switch.ios.cl-switch-large
+  input[type="checkbox"]:checked
+  + .switcher:before {
   margin-right: -30px;
 }
 
@@ -252,7 +254,9 @@
   font-size: 24px;
 }
 
-.cl-switch.ios.cl-switch-xlarge input[type="checkbox"]:checked + .switcher:before {
+.cl-switch.ios.cl-switch-xlarge
+  input[type="checkbox"]:checked
+  + .switcher:before {
   margin-right: -39px;
 }
 
@@ -265,7 +269,9 @@
   background: #ffffff;
 }
 
-.cl-switch.ios.cl-switch-black input[type="checkbox"]:checked + .switcher:before {
+.cl-switch.ios.cl-switch-black
+  input[type="checkbox"]:checked
+  + .switcher:before {
   background-color: #fff;
 }
 
@@ -299,7 +305,9 @@
   background: #ffffff;
 }
 
-.cl-switch.ios.cl-switch-green input[type="checkbox"]:checked + .switcher:before {
+.cl-switch.ios.cl-switch-green
+  input[type="checkbox"]:checked
+  + .switcher:before {
   background-color: #fff;
 }
 
@@ -316,7 +324,9 @@
   background: #ffffff;
 }
 
-.cl-switch.ios.cl-switch-orange input[type="checkbox"]:checked + .switcher:before {
+.cl-switch.ios.cl-switch-orange
+  input[type="checkbox"]:checked
+  + .switcher:before {
   background-color: #fff;
 }
 

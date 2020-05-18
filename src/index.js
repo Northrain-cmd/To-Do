@@ -1,7 +1,5 @@
-import  '../src/CSS/style.css'
-import   './sidebar';
-import authentication from './auth';
+import "../src/CSS/style.css";
+import "./sidebar";
+import authentication from "./auth";
 
 authentication.authenticate();
-
-
