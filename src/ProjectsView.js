@@ -10,7 +10,12 @@ export default (function(){
     const foldButton = document.querySelector('#fold-sidebar');
     const projectTitle = document.querySelector(".Project-Title-text");
     const renderProjects = function (){
-        Object.keys(ProjectsModel.projects).forEach(key=>{
+        if(sidebar.querySelectorAll('.deleteProjectDiv').length>0){
+            sidebar.querySelectorAll('.deleteProjectDiv').forEach(link=>{
+                sidebar.removeChild(link);
+            })
+        }
+        Object.keys(Projects).forEach(key=>{
                 const newProject = document.createElement("div");
                 newProject.classList.add("deleteProjectDiv");
                 const newProjectText = document.createElement("a");
@@ -37,7 +42,7 @@ export default (function(){
                             newProjectText.href = "#";
                             newProject.append(newProjectButton,newProjectText);
                             if(!inputField.value) alert("Please choose a name for this project");
-                            else if(!(inputField.value in ProjectsModel.projects)){
+                            else if(!(inputField.value in Projects)){
                                 newProjectText.textContent = inputField.value;
                                 sidebar.insertBefore(newProject,foldButton);
                                 ProjectsModel.newProject(inputField.value);
@@ -81,6 +86,7 @@ export default (function(){
                 activeTab.textContent = projectTitle.textContent;
                 switchProjects.setActiveProject(activeTab.textContent);
             }
+            else if(projectTitle.textContent === activeTab.textContent) return
             else toDoView.animateWrongName("project-title");
         })
     }

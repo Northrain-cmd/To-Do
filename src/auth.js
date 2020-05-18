@@ -1,22 +1,13 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from "firebase/app";
-import * as firebaseui from 'firebaseui'
-// Add the Firebase products that you want to use
-import "firebase/auth";
-const firebaseConfig = {
-    apiKey: "AIzaSyAxmCU5ndBfa0MbWYeb2cu3Vrkl2JbyAck",
-    authDomain: "to-do-e8d1e.firebaseapp.com",
-    databaseURL: "https://to-do-e8d1e.firebaseio.com",
-    projectId: "to-do-e8d1e",
-    storageBucket: "to-do-e8d1e.appspot.com",
-    messagingSenderId: "797209960245",
-    appId: "1:797209960245:web:855871ae7a2b48b9c9b67c"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+import ProjectsModel from "./ProjectsModel";
+import ProjectsView from './ProjectsView';
+import toDoView from "./toDoView";
+import switchTabs from './switch-projects';
+import toDoController from './toDoController';
   export default (function Authentication(){
+      const getUserId = function(){
+        return userId
+      } 
       const authenticate = function(){
-            const loginBtn = document.querySelector("#loginBtn");
             const logoutBtn = document.querySelector("#logoutBtn");
             const authContainer = document.querySelector("#firebaseui-auth-container");
             const userText = document.querySelector(".user");
@@ -24,13 +15,31 @@ const firebaseConfig = {
             var uiConfig = {
                 callbacks: {
                     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                      loginBtn.style.display="none";
                       logoutBtn.style.display = "block";
                       authContainer.style.display="none";
                       var user = authResult.user;
+                      var isNewUser = authResult.additionalUserInfo.isNewUser;
+                      userId = user.uid;
+                      if(isNewUser){
+                        ProjectsModel.newProject("Important");
+                        ProjectsModel.newProject("Movies to watch");
+                        ProjectsModel.newTask("I am a sample task (click me to expand)",new Date('2020/10/03'),
+                                            "You can click the project title to rename it","High","Important");
+                        ProjectsModel.newTask("Buy milk",new Date('2020/05/30'),
+                                            "Four bottles","Moderate","Important");
+                        ProjectsModel.newTask("Star Wars IX",new Date('2020/06/10'),
+                                            "Please don't","Moderate","Movies to watch",false);
+                        db.collection("users").doc(user.uid).set(Projects);
+                      }
+                      
+
+                      else {
+                       return
+                      }
                       // Do something with the returned AuthResult.
                       // Return type determines whether we continue the redirect automatically
                       // or whether we leave that to developer to handle.
+                      
                       return false;
                     },
                     signInFailure: function(error) {
@@ -68,7 +77,7 @@ const firebaseConfig = {
                   // immediately redirect to the provider's site instead of showing a
                   // 'Sign in with Provider' button first. In order for this to take
                   // effect, the signInFlow option must also be set to 'redirect'.
-                  immediateFederatedRedirect: false,
+                 // immediateFederatedRedirect: false,
                   // tosUrl and privacyPolicyUrl accept either url string or a callback
                   // function.
                   // Terms of service url/callback.
@@ -80,26 +89,41 @@ const firebaseConfig = {
                 };
             var ui = new firebaseui.auth.AuthUI(firebase.auth());
             // The start method will wait until the DOM is loaded.
-            loginBtn.addEventListener('click',()=>{
-                authContainer.style.display = "block";
-
-            })
             let initApp = function() {
                 firebase.auth().onAuthStateChanged(function(user) {
                   if (user) {
                     // User is signed in.
                     var displayName = user.displayName;
-                    loginBtn.style.display="none";
                       logoutBtn.style.display = "block";
                       authContainer.style.display="none";
                       userText.style.visibility = "visible";
                       username.textContent = displayName;
+                      userId = user.uid;
+                      db.collection("users").doc(user.uid).get()
+                        .then( doc =>{
+                          Projects = doc.data();
+                          toDoView.clearList(); 
+                          ProjectsView.renderProjects();
+                          switchTabs.switchTabs();
+                          toDoView.renderUnchecked(Object.keys(Projects)[0]);
+                          toDoController.controlFlow();
+                          ProjectsView.addProjectHandler();
+                          toDoView.addNewItemHandler();
+                        }).catch(error=>{
+                          console.log(error);
+                        })
 
                   } else {
                     // User is signed out.
-                    loginBtn.style.display="block";
-                    logoutBtn.style.display="none";
+                    toDoView.clearList();
+                    const sidebar = document.querySelector('.sidebar');
+                     sidebar.querySelectorAll('.deleteProjectDiv').forEach(link=>{
+                          sidebar.removeChild(link);
+                      }) 
                     userText.style.visibility="hidden";
+                    userId = false;
+                    logoutBtn.style.display="none";
+                    authContainer.style.display="block";
                   }
                 }, function(error) {
                   console.log(error);
@@ -116,12 +140,13 @@ const firebaseConfig = {
               }
             logoutBtn.addEventListener("click",()=>{
                 firebase.auth().signOut().then(() => {
+                    //ui.reset();
                     ui.start('#firebaseui-auth-container', uiConfig);
                   }, function (error) {
                     // An error happened.
                   });
             })
         }
-        return{authenticate}
+        return{authenticate,getUserId}
   })()
   

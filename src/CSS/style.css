@@ -1,4 +1,3 @@
-@import '~../../node_modules/firebaseui/dist/firebaseui.css';
 @import '~./normalize.css';
 @import '~./clean-switch.css';
 :root{
@@ -21,7 +20,7 @@ html{
     min-height: 100vh;
 }
 .firebaseui-form-actions{
-    display: flex;
+    display: flex !important;
 }
 #firebaseui-auth-container{
     min-height: 90vh;
@@ -32,7 +31,6 @@ html{
     background-color: white;
     margin: 0 auto;
     text-align: center;
-    display: none;
 }
 #firebaseui-auth-container h1{
     font-size: 1em;
@@ -488,6 +486,7 @@ input[type="button"]{
 }
 #loginBtn{
     background-color: #2196F3;
+    display:none;
 }
 #signupBtn{
     background-color: green;

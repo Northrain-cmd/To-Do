@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
-        <script defer src="main.js"></script>
         <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet"> 
         <link rel="icon" href="favicon2.png" type="image/png">
@@ -31,7 +30,6 @@
                 <button type="button" id="fold-sidebar">&#10094;</button>
                 <p class="user">Logged in as:<br><span id="username"></span> </p>
                 <div class="auth">
-                    <button id="loginBtn">Login</button>
                     <button id="logoutBtn">Logout</button>
                 </div>
               </div>
@@ -105,8 +103,39 @@
             </div>
         </section>
         </div>
+       
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
+
+
+
+
+
+        <script defer>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+              apiKey: "AIzaSyAxmCU5ndBfa0MbWYeb2cu3Vrkl2JbyAck",
+              authDomain: "to-do-e8d1e.firebaseapp.com",
+              databaseURL: "https://to-do-e8d1e.firebaseio.com",
+              projectId: "to-do-e8d1e",
+              storageBucket: "to-do-e8d1e.appspot.com",
+              messagingSenderId: "797209960245",
+              appId: "1:797209960245:web:855871ae7a2b48b9c9b67c"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            let Projects = {};
+            let userId;
+          </script>
         <script src="https://kit.fontawesome.com/b14cc21095.js" crossorigin="anonymous"></script>
+        <script defer src="main.js"></script>
         
     </body>
     </html>

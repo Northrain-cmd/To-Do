@@ -81,7 +81,7 @@ export default (function toDoListView(){
     const renderChecked = function (projectName){
         projectTitle.innerHTML=projectName;
         projectTitle.style.border="1px solid white";
-        ProjectsModel.projects[projectName].todoList.sort((a,b)=>{
+        Projects[projectName].todoList.sort((a,b)=>{
             let table = {"Regular":1,"Moderate":2,"High":3};
             return table[b.importance]-table[a.importance];
             
@@ -96,7 +96,7 @@ export default (function toDoListView(){
     const renderUnchecked = function (projectName){
         projectTitle.innerHTML=projectName;
         projectTitle.style.border="1px solid white";
-        ProjectsModel.projects[projectName].todoList.filter((item)=>{
+       Projects[projectName].todoList.filter((item)=>{
             return item.checked === false;
         }).sort((a,b)=>{
             let table = {"Regular":1,"Moderate":2,"High":3};
